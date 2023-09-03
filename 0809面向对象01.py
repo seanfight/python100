@@ -1,4 +1,4 @@
-'''
+"""
 案例一：奥特曼打小怪兽
 author：dong
 主要学习的参数：
@@ -20,7 +20,7 @@ author：dong
                     main()
     4）静态方法staticmethod和类方法classmethod
 设计思路：
-'''
+"""
 
 # 定义一个抽象类
 from abc import ABCMeta, abstractmethod
@@ -53,6 +53,7 @@ class Fighter(object, metaclass=ABCMeta):
         return self._hp
 
     # 战斗,other是其他
+    @abstractmethod
     def fight(self, other):
         pass
 
@@ -103,7 +104,7 @@ class Aoteman(Fighter):
 class Xiao(Fighter):
     __slots__ = ('_name', '_hp')
 
-    def attack(self, other):
+    def fight(self, other):
         other.hp -= randint(10, 20)
 
     def __str__(self):
@@ -163,7 +164,7 @@ def main():
 
         if m.alive > 0:
             print('%s回击了%s.' % (m.name, aoteman.name))
-            m.attack(aoteman)
+            m.fight(aoteman)
         display_info(aoteman, xiao)  # 每个回合结束后显示奥特曼和小怪兽的信息
         fight_round += 1
 
